@@ -20,34 +20,34 @@
 
 ## 2) Roadmap (Iterativo por hitos)
 
-### Hito 0 — Bootstrap
+### Hito 0 — Bootstrap (Día 0–2)
 - Repo monorepo (`kzw/`): frontend (Next.js), backend (FastAPI), DB (PostgreSQL), infra (Docker).
 - Pipeline CI (GitHub Actions): lint + test + build.
 - Plantilla UI (Tailwind + shadcn/ui), tema oscuro por defecto.
 
-### Hito 1 — MVP CRUD 
+### Hito 1 — MVP CRUD (Semana 1)
 - Autenticación single-user (password local + sesión segura/JWT). 
 - CRUD de **Cuentas**, **Categorías**, **Transacciones** (gasto/ingreso/transferencia).
 - Listado, detalle, edición in-line, búsqueda simple.
 - Esquema DB v1 + migraciones Alembic.
 
-### Hito 2 — Productividad
+### Hito 2 — Productividad (Semana 2)
 - **Recurrencias** (mensual/semanal/custom) con posteos automáticos.
 - **Tags** múltiples por transacción.
 - **Import CSV** (plantillas: banco, tarjeta, genérico).
 - **Reconciliación**/duplicados (reglas simples por monto+fecha+merchant).
 
-### Hito 3 — Reportes 
+### Hito 3 — Reportes (Semana 3)
 - Resumen mensual/por rango: totales, por categoría, por cuenta.
 - Gráficos (barras/series/rosca) y export **CSV/JSON**.
 - Presupuesto mensual por categoría (soft-limit con alertas visuales).
 
-### Hito 4 — Calidad de vida 
+### Hito 4 — Calidad de vida (Semana 4)
 - Búsqueda avanzada (filtros combinados, guardados).
 - Reglas de auto-categorización (regex/contiene merchant -> categoría, tags).
 - Copias de seguridad y **cifrado local** opcional (AES-256 en repositorio local).
 
-### Backlog
+### Backlog (Futuro)
 - App móvil (PWA), notificaciones, multi-dispositivo con sync.
 - OCR de recibos, import QIF/OFX, integraciones bancarias.
 - Multiusuario (roles), webhooks, API tokens personales.
@@ -94,44 +94,43 @@ erDiagram
     ACCOUNT {
       uuid id PK
       string name
-      string type  // cash, debit, credit, savings, etc.
-      string currency // ISO 4217 e.g., CLP, USD
-      numeric balance_cached // opcional, derivable
-      timestamptz created_at
+      string type
+      string currency
+      float balance_cached
+      datetime created_at
     }
 
     CATEGORY {
       uuid id PK
       string name
-      string kind // expense|income
-      uuid parent_id FK // jerarquía opcional
-      timestamptz created_at
+      string kind
+      uuid parent_id
+      datetime created_at
     }
 
     TAG {
       uuid id PK
       string name
-      timestamptz created_at
+      datetime created_at
     }
 
     TRANSACTION {
       uuid id PK
-      uuid account_id FK
-      uuid category_id FK NULL
-      string type // expense|income|transfer
-      numeric amount // + = ingreso, - = gasto
+      uuid account_id
+      uuid category_id
+      string type
+      float amount
       date tx_date
-      string merchant NULL
-      string notes NULL
-      jsonb meta NULL // campos libres (origen import, hash, etc.)
-      timestamptz created_at
-      timestamptz updated_at
+      string merchant
+      string notes
+      string meta
+      datetime created_at
+      datetime updated_at
     }
 
     TX_TAG {
-      uuid tx_id FK
-      uuid tag_id FK
-      PK (tx_id, tag_id)
+      uuid tx_id
+      uuid tag_id
     }
 ```
 
