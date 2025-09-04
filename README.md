@@ -300,7 +300,7 @@ date,amount,description,merchant
 ---
 
 ## 13) Licencia & Estado
-- Uso personal. Repo privado. Licencia a definir.
+- Uso personal. Repo publico. Licencia MIT.
 
 ---
 
