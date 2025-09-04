@@ -20,36 +20,35 @@
 
 ## 2) Roadmap (Iterativo por hitos)
 
-### Hito 0 — Bootstrap (Día 0–2)
+### Hito 0 — Bootstrap 
 - Repo monorepo (`kzw/`): frontend (Next.js), backend (FastAPI), DB (PostgreSQL), infra (Docker).
 - Pipeline CI (GitHub Actions): lint + test + build.
 - Plantilla UI (Tailwind + shadcn/ui), tema oscuro por defecto.
 
-### Hito 1 — MVP CRUD (Semana 1)
+### Hito 1 — MVP CRUD 
 - Autenticación single-user (password local + sesión segura/JWT). 
 - CRUD de **Cuentas**, **Categorías**, **Transacciones** (gasto/ingreso/transferencia).
 - Listado, detalle, edición in-line, búsqueda simple.
 - Esquema DB v1 + migraciones Alembic.
 
-### Hito 2 — Productividad (Semana 2)
+### Hito 2 — Productividad
 - **Recurrencias** (mensual/semanal/custom) con posteos automáticos.
 - **Tags** múltiples por transacción.
 - **Import CSV** (plantillas: banco, tarjeta, genérico).
 - **Reconciliación**/duplicados (reglas simples por monto+fecha+merchant).
 
-### Hito 3 — Reportes (Semana 3)
+### Hito 3 — Reportes
 - Resumen mensual/por rango: totales, por categoría, por cuenta.
 - Gráficos (barras/series/rosca) y export **CSV/JSON**.
 - Presupuesto mensual por categoría (soft-limit con alertas visuales).
 
-### Hito 4 — Calidad de vida (Semana 4)
+### Hito 4 — Calidad de vida
 - Búsqueda avanzada (filtros combinados, guardados).
 - Reglas de auto-categorización (regex/contiene merchant -> categoría, tags).
 - Copias de seguridad y **cifrado local** opcional (AES-256 en repositorio local).
 
-### Backlog (Futuro)
-- App móvil (PWA), notificaciones, multi-dispositivo con sync.
-- OCR de recibos, import QIF/OFX, integraciones bancarias.
+### Backlog
+- OCR de recibos, import QIF/OFX.
 - Multiusuario (roles), webhooks, API tokens personales.
 
 ---
@@ -260,7 +259,7 @@ erDiagram
 ### Pasos
 ```bash
 # 1) Clonar
-git clone git@github.com:usuario/kzw.git && cd kzw
+git clone https://github.com/KuroStain/Kakeibo-Zeny-Wallet.git
 
 # 2) Variables de entorno
 cp apps/backend/.env.example apps/backend/.env
