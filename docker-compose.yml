@@ -20,15 +20,13 @@ services:
       - kzw
 
   frontend:
+    user: "${UID}:${GID}"
     image: node:20-alpine
     working_dir: /app
     volumes:
       - ./apps/frontend:/app
-      - /app/node_modules
     command: >-
-      sh -c "[ -f package.json ] || (npm init -y && npm pkg set type=module);
-      npm i --silent --no-audit || true;
-      npm run dev -- --port 3000"
+      sh -c "npm install && npm run dev -- --port 3000"
     environment:
       - PORT=3000
       - NEXT_TELEMETRY_DISABLED=1
